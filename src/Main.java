@@ -213,9 +213,13 @@ public class Main {
 
     @SuppressWarnings("ForLoopReplaceableByForEach")
     private static void getMatchesForNumber(@NotNull final String number,
-                                            final String original_number, final String match,
+                                            final String original_number,
+                                            final String match,
                                             boolean trailing_digit) {
 
+        /*
+        * Base case
+        * */
         if (number.isEmpty()) {
             if (!match.isEmpty()) {
                 System.out.println(original_number + ": " + match);
