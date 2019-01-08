@@ -86,29 +86,27 @@ public class Main {
             String dict = args[0];
             String num = args[1];
 
-            if (dict != null && num != null) {
-                BufferedReader file = new BufferedReader(new FileReader(dict));
-                String word;
+            BufferedReader file = new BufferedReader(new FileReader(dict));
+            String word;
 
-                while ((word = file.readLine()) != null) {
-                    addNumbersAndWords(numbers_and_words, word_to_number(word), word);
-                }
-
-                file.close();
-
-                word_list =
-                        Collections.unmodifiableMap(numbers_and_words);
-
-                file = new BufferedReader(new FileReader(num));
-                String number;
-
-                while ((number = file.readLine()) != null) {
-                    getMatchesForNumber(trim_number(number),
-                            trim_number(number), "", false);
-                }
-
-                file.close();
+            while ((word = file.readLine()) != null) {
+                addNumbersAndWords(numbers_and_words, word_to_number(word), word);
             }
+
+            file.close();
+
+            word_list =
+                    Collections.unmodifiableMap(numbers_and_words);
+
+            file = new BufferedReader(new FileReader(num));
+            String number;
+
+            while ((number = file.readLine()) != null) {
+                getMatchesForNumber(trim_number(number),
+                        trim_number(number), "", false);
+            }
+
+            file.close();
 
         }
     }
