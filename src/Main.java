@@ -7,9 +7,14 @@ import java.io.IOException;
 import java.util.*;
 
 /*
+ * THESE ARE THE MAPPING RULES:
+ *
+ *
  * E | JNQ | RWX | DSY | FT | AM | CIV | BKU | LOP | GHZ
  * e | jnq | rwx | dsy | ft | am | civ | bku | lop | ghz
  * 0 | 1   | 2   | 3   | 4  | 5  | 6   | 7   | 8   | 9
+ *
+ *
  */
 
 /**
@@ -17,6 +22,9 @@ import java.util.*;
  */
 public class Main {
 
+    /*
+     * Words to match against when no arguments are given.
+     * */
     private static final String[] words = {
             "an",
             "blau",
@@ -43,6 +51,9 @@ public class Main {
             "Wasser"
     };
 
+    /*
+     * Phonenumbers to use when no arguments are given.
+     * */
     private static final String[] numbers = {
             "112",
             "562482",
@@ -56,7 +67,8 @@ public class Main {
 
     private static Map<String, List<String>> word_list;
 
-    private static void addNumbersAndWords(@NotNull final Map<String, List<String>> numbers_and_words, final String number, final String word) {
+    private static void addNumbersAndWordsToMap(@NotNull final Map<String, List<String>> numbers_and_words,
+                                                final String number, final String word) {
         if (numbers_and_words.containsKey(number)) {
             numbers_and_words.get(number).add(word);
         } else {
@@ -66,20 +78,20 @@ public class Main {
         }
     }
 
-    public static void main(@NotNull String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         final Map<String, List<String>> numbers_and_words = new HashMap<>();
 
         if (args.length == 0) {
             for (String word : words) {
-                addNumbersAndWords(numbers_and_words, word_to_number(word), word);
+                addNumbersAndWordsToMap(numbers_and_words, wordToNumber(word), word);
             }
 
             word_list =
                     Collections.unmodifiableMap(numbers_and_words);
 
             for (String number : numbers) {
-                getMatchesForNumber(trim_number(number),
-                        trim_number(number), "", false);
+                getMatchesForNumber(trimNumber(number),
+                        trimNumber(number), "", false);
             }
 
         } else {
@@ -90,20 +102,19 @@ public class Main {
             String word;
 
             while ((word = file.readLine()) != null) {
-                addNumbersAndWords(numbers_and_words, word_to_number(word), word);
+                addNumbersAndWordsToMap(numbers_and_words, wordToNumber(word), word);
             }
 
             file.close();
 
-            word_list =
-                    Collections.unmodifiableMap(numbers_and_words);
+            word_list = Collections.unmodifiableMap(numbers_and_words);
 
             file = new BufferedReader(new FileReader(num));
             String number;
 
             while ((number = file.readLine()) != null) {
-                getMatchesForNumber(trim_number(number),
-                        trim_number(number), "", false);
+                getMatchesForNumber(trimNumber(number),
+                        trimNumber(number), "", false);
             }
 
             file.close();
@@ -111,8 +122,12 @@ public class Main {
         }
     }
 
+    /*
+     *
+     * Map a character to a digit according to the mapping rules.
+     * */
     @Contract(pure = true)
-    private static int character_to_digit(char character) {
+    private static int characterToDigit(char character) {
         switch (character) {
             case 'e':
             case 'E':
@@ -182,17 +197,17 @@ public class Main {
     }
 
     @NotNull
-    private static String word_to_number(String word) {
+    private static String wordToNumber(String word) {
         StringBuilder number = new StringBuilder();
 
         for (char character : word.toCharArray()) {
-            number.append(character_to_digit(character));
+            number.append(characterToDigit(character));
         }
         return number.toString();
     }
 
     @NotNull
-    private static String trim_number(String number) {
+    private static String trimNumber(String number) {
         return number.replaceAll(" ", "").replaceAll("-", "");
     }
 
