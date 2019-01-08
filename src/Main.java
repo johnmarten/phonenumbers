@@ -117,107 +117,65 @@ public class Main {
     private static int character_to_digit(char character) {
         switch (character) {
             case 'e':
-                return 0;
             case 'E':
                 return 0;
             case 'j':
-                return 1;
             case 'J':
-                return 1;
             case 'n':
-                return 1;
             case 'N':
-                return 1;
             case 'q':
-                return 1;
             case 'Q':
                 return 1;
             case 'r':
-                return 2;
             case 'R':
-                return 2;
             case 'w':
-                return 2;
             case 'W':
-                return 2;
             case 'x':
-                return 2;
             case 'X':
                 return 2;
             case 'd':
-                return 3;
             case 'D':
-                return 3;
             case 's':
-                return 3;
             case 'S':
-                return 3;
             case 'y':
-                return 3;
             case 'Y':
                 return 3;
             case 'f':
-                return 4;
             case 'F':
-                return 4;
             case 't':
-                return 4;
             case 'T':
                 return 4;
             case 'a':
-                return 5;
             case 'A':
-                return 5;
             case 'm':
-                return 5;
             case 'M':
                 return 5;
             case 'c':
-                return 6;
             case 'C':
-                return 6;
             case 'i':
-                return 6;
             case 'I':
-                return 6;
             case 'v':
-                return 6;
             case 'V':
                 return 6;
             case 'b':
-                return 7;
             case 'B':
-                return 7;
             case 'k':
-                return 7;
             case 'K':
-                return 7;
             case 'u':
-                return 7;
             case 'U':
                 return 7;
             case 'l':
-                return 8;
             case 'L':
-                return 8;
             case 'o':
-                return 8;
             case 'O':
-                return 8;
             case 'p':
-                return 8;
             case 'P':
                 return 8;
             case 'g':
-                return 9;
             case 'G':
-                return 9;
             case 'h':
-                return 9;
             case 'H':
-                return 9;
             case 'z':
-                return 9;
             case 'Z':
                 return 9;
             default:
